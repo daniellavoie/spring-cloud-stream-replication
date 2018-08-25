@@ -2,8 +2,10 @@ package io.daniellavoie.spring.replication;
 
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +22,9 @@ public class ReplicationEventController {
 		replicationEventService.deleteAll();
 	}
 
-	@GetMapping
-	public void recoverEvents(@RequestParam String source, LocalDateTime since) {
+	@PostMapping
+	public void recoverEvents(@RequestParam String source,
+			@RequestParam @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime since) {
 		replicationEventService.recoverEvents(source, since);
 	}
 }

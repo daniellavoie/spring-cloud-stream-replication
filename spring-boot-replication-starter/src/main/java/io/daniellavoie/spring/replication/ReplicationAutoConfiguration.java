@@ -8,12 +8,13 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.daniellavoie.spring.replication.AbstractReplicationService.ReplicationSource;
 import io.daniellavoie.spring.replication.ReplicationEventServiceImpl.ReplicationSink;
 import io.daniellavoie.spring.replication.repository.ReplicationEventRepository;
 
 @Configuration
 @AutoConfigurationPackage
-@EnableBinding(ReplicationSink.class)
+@EnableBinding({ ReplicationSink.class, ReplicationSource.class })
 public class ReplicationAutoConfiguration {
 	@Bean
 	public ReplicationConfig replicationConfig() {

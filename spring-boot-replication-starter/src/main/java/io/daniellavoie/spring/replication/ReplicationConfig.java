@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("replication")
 public class ReplicationConfig {
 	private boolean enabled = true;
-	private String source;
+	private String source = "default";
 
 	public ReplicationConfig() {
 

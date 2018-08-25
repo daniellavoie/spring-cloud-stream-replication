@@ -35,7 +35,7 @@ public class CustomerServiceImpl extends AbstractReplicationService<Customer> im
 
 	@Override
 	public void processUpdateEvent(Customer customer) {
-		save(customer);
+		customerRepository.save(customer);
 	}
 
 	@Override

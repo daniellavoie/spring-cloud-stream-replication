@@ -1,7 +1,7 @@
 package io.daniellavoie.spring.replication.service;
 
-public interface TestMessageRepository {
-	TestMessage save(TestMessage testMessage);
+import org.springframework.data.jpa.repository.JpaRepository;
 
-	void delete(long id);
+public interface TestMessageRepository extends JpaRepository<TestMessage, Long> {
+
 }

@@ -1,5 +1,9 @@
 package io.daniellavoie.spring.replication.service;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class TestMessage {
 	private long id;
 	private String message;
@@ -13,6 +17,7 @@ public class TestMessage {
 		this.message = message;
 	}
 
+	@Id
 	public long getId() {
 		return id;
 	}

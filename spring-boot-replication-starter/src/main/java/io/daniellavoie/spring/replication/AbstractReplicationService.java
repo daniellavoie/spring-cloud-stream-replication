@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
@@ -13,13 +12,11 @@ import org.springframework.messaging.support.MessageBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.daniellavoie.spring.replication.AbstractReplicationService.ReplicationSource;
 import io.daniellavoie.spring.replication.ReplicationEvent.EventType;
 import io.daniellavoie.spring.replication.exception.ReplicationMarshallingException;
 import io.daniellavoie.spring.replication.exception.ReplicationUnmarshallingException;
 import io.daniellavoie.spring.replication.repository.ReplicationEventRepository;
 
-@EnableBinding(ReplicationSource.class)
 public abstract class AbstractReplicationService<T> implements ReplicationService<T> {
 	public interface ReplicationSource {
 		static final String OUTPUT = "replication-source";

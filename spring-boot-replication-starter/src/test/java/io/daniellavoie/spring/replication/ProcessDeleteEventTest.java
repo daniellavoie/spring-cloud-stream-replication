@@ -28,6 +28,6 @@ public class ProcessDeleteEventTest extends ReplicationServiceTest {
 
 		replicationEventService.processEvent(replicationEvent);
 
-		Mockito.verify(testMessageRepository).delete(testMessage.getId());
+		Mockito.verify(testMessageRepository).deleteById(testMessage.getId());
 	}
 }

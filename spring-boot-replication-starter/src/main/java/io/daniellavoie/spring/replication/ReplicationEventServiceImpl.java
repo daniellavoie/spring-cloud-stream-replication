@@ -50,11 +50,6 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 	}
 
 	@Override
-	public Stream<ReplicationEvent> findAll() {
-		return replicationEventRepository.findAllStream();
-	}
-
-	@Override
 	@StreamListener(ReplicationSink.INPUT)
 	public void processEvent(ReplicationEvent replicationEvent) {
 		replicationEvent = replicationEventRepository.save(replicationEvent);
@@ -84,18 +79,12 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 	}
 
 	private void recoverEvent(ReplicationEvent replicationEvent) {
-		replicationEvent = replicationEventRepository.save(replicationEvent);
-
 		ReplicationService<?> replicationService = replicationServices.get(replicationEvent.getObjectClass());
 
-		if (replicationService != null) {
-			if (EventType.UPDATE.equals(replicationEvent.getEventType())) {
-				replicationService.convertAndProcessUpdateEvent(replicationEvent);
-			} else {
-				replicationService.processDelete(replicationEvent.getPayload());
-			}
+		if (EventType.UPDATE.equals(replicationEvent.getEventType())) {
+			replicationService.convertAndProcessUpdateEvent(replicationEvent);
 		} else {
-			LOGGER.warn("Could not find a replication service for class " + replicationEvent.getObjectClass() + ".");
+			replicationService.processDelete(replicationEvent.getPayload());
 		}
 	}
 }

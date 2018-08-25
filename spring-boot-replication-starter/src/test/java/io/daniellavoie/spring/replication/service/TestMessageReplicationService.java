@@ -19,18 +19,26 @@ public class TestMessageReplicationService extends AbstractReplicationService<Te
 	}
 
 	public void delete(long id) {
-		testMessageRepository.delete(id);
+		testMessageRepository.deleteById(id);
 
 		sendDeleteEvent(String.valueOf(id));
 	}
 
+	private TestMessage merge(TestMessage existingTestMessage, TestMessage testMessage) {
+		existingTestMessage.setMessage(testMessage.getMessage());
+
+		return existingTestMessage;
+	}
+
 	public TestMessage save(TestMessage testMessage) {
-		testMessage = testMessageRepository.save(testMessage);
+		TestMessage testMessageToSave = testMessageRepository.findById(testMessage.getId())
+				.map(existingTestMessage -> merge(existingTestMessage, testMessage)).orElse(testMessage);
 
-		sendUpdateEvent(testMessage);
+		TestMessage savedTestMessage = testMessageRepository.save(testMessageToSave);
 
-		return testMessage;
+		sendUpdateEvent(savedTestMessage);
 
+		return savedTestMessage;
 	}
 
 	@Override
@@ -40,7 +48,7 @@ public class TestMessageReplicationService extends AbstractReplicationService<Te
 
 	@Override
 	public void processDelete(String serializedId) {
-		testMessageRepository.delete(Long.valueOf(serializedId));
+		testMessageRepository.deleteById(Long.valueOf(serializedId));
 	}
 
 	@Override

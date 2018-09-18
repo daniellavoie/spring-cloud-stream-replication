@@ -22,6 +22,8 @@ public class CustomerServiceImpl extends AbstractReplicationService<Customer> im
 
 	public void delete(long id) {
 		customerRepository.deleteById(id);
+		
+		sendDeleteEvent(String.valueOf(id));
 	}
 
 	@Override
@@ -40,12 +42,11 @@ public class CustomerServiceImpl extends AbstractReplicationService<Customer> im
 
 	@Override
 	public void processDelete(String serializedId) {
-		delete(Long.parseLong(serializedId));
+		customerRepository.deleteById(Long.parseLong(serializedId));
 	}
 
 	@Override
 	public Class<Customer> getEntityClass() {
 		return Customer.class;
 	}
-
 }

@@ -23,14 +23,14 @@ public class CustomerServiceImpl extends AbstractReplicationService<Customer> im
 	public void delete(long id) {
 		customerRepository.deleteById(id);
 		
-		sendDeleteEvent(String.valueOf(id));
+		sendDeleteEvent(String.valueOf(id), null);
 	}
 
 	@Override
 	public Customer save(Customer customer) {
 		customer = customerRepository.save(customer);
 
-		sendUpdateEvent(customer);
+		sendUpdateEvent(customer, null);
 
 		return customer;
 	}

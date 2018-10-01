@@ -28,7 +28,7 @@ public class PurgeReplicationEventsTest {
 		replicationEventRepository.saveAll(IntStream.range(1, 201)
 				.mapToObj(index -> new ReplicationEvent(index,
 						index < 101 ? LocalDateTime.now().minusMonths(1) : LocalDateTime.now(), "test-class",
-						EventType.UPDATE, "default", "test-payload"))
+						EventType.UPDATE, "default", "test-payload", "test-idx-key"))
 				.collect(Collectors.toList()));
 
 		Assert.assertEquals(100, replicationEventService.purgeEvents());

@@ -12,7 +12,7 @@ import io.daniellavoie.spring.replication.ReplicationEvent.EventType;
 import io.daniellavoie.spring.replication.service.TestMessage;
 
 public class ProcessDeleteEventTest extends ReplicationServiceTest {
-	private TestMessage testMessage = new TestMessage(1, "This is a test.");
+	private TestMessage testMessage = new TestMessage(1, "This is a test.", "Encryption key index");
 
 	@Test
 	public void testProcessDeleteEvent() {
@@ -24,7 +24,7 @@ public class ProcessDeleteEventTest extends ReplicationServiceTest {
 				replicationEventRepository, Optional.of(replicationServices));
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), TestMessage.class.getName(),
-				EventType.DELETE, "default", String.valueOf(testMessage.getId()));
+				EventType.DELETE, "default", String.valueOf(testMessage.getId()), testMessage.getIdxEncryptionKey());
 
 		replicationEventService.processEvent(replicationEvent);
 

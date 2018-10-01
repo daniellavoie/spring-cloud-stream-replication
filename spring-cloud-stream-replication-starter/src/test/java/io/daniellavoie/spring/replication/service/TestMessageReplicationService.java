@@ -18,10 +18,10 @@ public class TestMessageReplicationService extends AbstractReplicationService<Te
 		this.testMessageRepository = testMessageRepository;
 	}
 
-	public void delete(long id) {
+	public void delete(long id, String idxEncryptionKey) {
 		testMessageRepository.deleteById(id);
 
-		sendDeleteEvent(String.valueOf(id));
+		sendDeleteEvent(String.valueOf(id), idxEncryptionKey);
 	}
 
 	private TestMessage merge(TestMessage existingTestMessage, TestMessage testMessage) {
@@ -36,7 +36,7 @@ public class TestMessageReplicationService extends AbstractReplicationService<Te
 
 		TestMessage savedTestMessage = testMessageRepository.save(testMessageToSave);
 
-		sendUpdateEvent(savedTestMessage);
+		sendUpdateEvent(savedTestMessage, savedTestMessage.getIdxEncryptionKey());
 
 		return savedTestMessage;
 	}

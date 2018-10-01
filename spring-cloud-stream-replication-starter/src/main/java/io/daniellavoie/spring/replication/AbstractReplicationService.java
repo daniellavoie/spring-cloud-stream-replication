@@ -62,9 +62,9 @@ public abstract class AbstractReplicationService<T> implements ReplicationServic
 		return skipEventProcessing;
 	}
 
-	public void sendDeleteEvent(String serializedId) {
+	public void sendDeleteEvent(String serializedId, String idxClefChiffrement) {
 		ReplicationEvent replicationEvent = replicationEventRepository.save(new ReplicationEvent(0l,
-				LocalDateTime.now(), entityClass, EventType.DELETE, replicationConfig.getSource(), serializedId));
+				LocalDateTime.now(), entityClass, EventType.DELETE, replicationConfig.getSource(), serializedId, idxClefChiffrement));
 
 		if (replicationConfig.isEnabled()) {
 			replicationSource.output().send(MessageBuilder.withPayload(replicationEvent).build());
@@ -72,11 +72,11 @@ public abstract class AbstractReplicationService<T> implements ReplicationServic
 	}
 
 	@Override
-	public void sendUpdateEvent(Object payload) {
+	public void sendUpdateEvent(Object payload, String idxClefChiffrement) {
 		try {
 			ReplicationEvent replicationEvent = replicationEventRepository
 					.save(new ReplicationEvent(0l, LocalDateTime.now(), entityClass, EventType.UPDATE,
-							replicationConfig.getSource(), objectMapper.writeValueAsString(payload)));
+							replicationConfig.getSource(), objectMapper.writeValueAsString(payload), idxClefChiffrement));
 
 			if (replicationConfig.isEnabled()) {
 				replicationSource.output().send(MessageBuilder.withPayload(replicationEvent).build());

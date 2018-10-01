@@ -16,35 +16,36 @@ public class ReplicationEvent {
 		UPDATE, DELETE
 	}
 
-	private long id;
+	private long idReplicationEvent;
 	private LocalDateTime timestamp;
 	private String objectClass;
 	private EventType eventType;
 	private String source;
 	private String payload;
+	private String idxEncryptionKey;
 
 	public ReplicationEvent() {
 
 	}
 
-	public ReplicationEvent(long id, LocalDateTime timestamp, String objectClass, EventType eventType, String source,
-			String payload) {
-		setId(id);
+	public ReplicationEvent(long idReplicationEvent, LocalDateTime timestamp, String objectClass, EventType eventType, String source, String payload, String idxClefChiffrement) {
+		setIdReplicationEvent(idReplicationEvent);
 		setTimestamp(timestamp);
 		setObjectClass(objectClass);
 		setEventType(eventType);
 		setSource(source);
 		setPayload(payload);
+		setIdxEncryptionKey(idxEncryptionKey);
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long getId() {
-		return id;
+	public long getIdReplicationEvent() {
+		return idReplicationEvent;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setIdReplicationEvent(long idReplicationEvent) {
+		this.idReplicationEvent = idReplicationEvent;
 	}
 
 	public LocalDateTime getTimestamp() {
@@ -87,5 +88,13 @@ public class ReplicationEvent {
 
 	public void setPayload(String payload) {
 		this.payload = payload;
+	}
+
+	public String getIdxEncryptionKey() {
+		return idxEncryptionKey;
+	}
+
+	public void setIdxEncryptionKey(String idxEncryptionKey) {
+		this.idxEncryptionKey = idxEncryptionKey;
 	}
 }

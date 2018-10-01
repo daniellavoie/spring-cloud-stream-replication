@@ -11,5 +11,5 @@ public interface ReplicationService<T> {
 
 	void processDelete(String serializedId);
 
-	void sendUpdateEvent(Object payload);
+	void sendUpdateEvent(Object payload, String idxClefChiffrement);
 }

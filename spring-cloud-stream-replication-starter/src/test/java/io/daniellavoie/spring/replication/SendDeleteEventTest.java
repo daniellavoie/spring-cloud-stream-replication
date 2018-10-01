@@ -14,7 +14,7 @@ import io.daniellavoie.spring.replication.ReplicationEvent.EventType;
 import io.daniellavoie.spring.replication.service.TestMessage;
 
 public class SendDeleteEventTest extends ReplicationServiceTest {
-	private TestMessage testMessage = new TestMessage(1, "This is a test.");
+	private TestMessage testMessage = new TestMessage(1, "This is a test.", "Encryption key index");
 
 	@Test
 	@SuppressWarnings("unchecked")
@@ -34,7 +34,7 @@ public class SendDeleteEventTest extends ReplicationServiceTest {
 
 		setup(Optional.empty(), Optional.empty(), Optional.of(messageChannel), Optional.empty(), Optional.empty());
 
-		service.delete(testMessage.getId());
+		service.delete(testMessage.getId(), testMessage.getIdxEncryptionKey());
 
 		Mockito.verify(messageChannel).send(Mockito.any());
 	}
@@ -50,7 +50,7 @@ public class SendDeleteEventTest extends ReplicationServiceTest {
 
 		setup(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(replicationConfig));
 
-		service.delete(testMessage.getId());
+		service.delete(testMessage.getId(), testMessage.getIdxEncryptionKey());
 
 		Mockito.verify(replicationEventRepository).save(Mockito.any());
 		Mockito.verify(messageChannel, Mockito.never()).send(Mockito.any());

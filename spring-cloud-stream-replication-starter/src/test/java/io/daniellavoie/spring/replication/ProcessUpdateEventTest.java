@@ -19,7 +19,7 @@ import io.daniellavoie.spring.replication.service.TestMessageReplicationService;
 import io.daniellavoie.spring.replication.service.TestMessageRepository;
 
 public class ProcessUpdateEventTest extends ReplicationServiceTest {
-	private TestMessage testMessage = new TestMessage(1, "This is a test.");
+	private TestMessage testMessage = new TestMessage(1, "This is a test.", "Encryption key index");
 
 	@Test
 	public void testProcessUpdateEvent() throws JsonProcessingException {
@@ -52,7 +52,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), TestMessage.class.getName(),
 				EventType.UPDATE, "default",
-				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage));
+				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage), testMessage.getIdxEncryptionKey());
 
 		replicationEventService.processEvent(replicationEvent);
 
@@ -68,7 +68,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), "unknown-class",
 				EventType.UPDATE, "default",
-				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage));
+				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage), testMessage.getIdxEncryptionKey());
 
 		replicationEventService.processEvent(replicationEvent);
 
@@ -84,7 +84,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 				replicationEventRepository, Optional.of(Arrays.asList(service)));
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), TestMessage.class.getName(),
-				EventType.UPDATE, "default", ") {{}}{{");
+				EventType.UPDATE, "default", ") {{}}{{", "");
 
 		replicationEventService.processEvent(replicationEvent);
 	}
@@ -101,7 +101,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), TestMessage.class.getName(),
 				EventType.UPDATE, "default",
-				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage));
+				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage), testMessage.getIdxEncryptionKey());
 
 		replicationEventService.processEvent(replicationEvent);
 
@@ -118,7 +118,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), TestMessage.class.getName(),
 				EventType.UPDATE, "default",
-				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage));
+				new ObjectMapper().findAndRegisterModules().writeValueAsString(testMessage), testMessage.getIdxEncryptionKey());
 
 		replicationEventService.processEvent(replicationEvent);
 

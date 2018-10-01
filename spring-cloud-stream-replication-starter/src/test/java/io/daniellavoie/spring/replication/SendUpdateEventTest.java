@@ -16,7 +16,7 @@ import io.daniellavoie.spring.replication.exception.ReplicationMarshallingExcept
 import io.daniellavoie.spring.replication.service.TestMessage;
 
 public class SendUpdateEventTest extends ReplicationServiceTest {
-	private TestMessage testMessage = new TestMessage(1, "This is a test.");
+	private TestMessage testMessage = new TestMessage(1, "This is a test.", "Encryption key index");
 
 	@Test
 	@SuppressWarnings("unchecked")

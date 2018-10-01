@@ -7,14 +7,16 @@ import javax.persistence.Id;
 public class TestMessage {
 	private long id;
 	private String message;
+	private String idxEncryptionKey;
 
 	public TestMessage() {
 
 	}
 
-	public TestMessage(long id, String message) {
+	public TestMessage(long id, String message, String idxEncryptionKey) {
 		this.id = id;
 		this.message = message;
+		this.idxEncryptionKey = idxEncryptionKey;
 	}
 
 	@Id
@@ -32,5 +34,13 @@ public class TestMessage {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getIdxEncryptionKey() {
+		return idxEncryptionKey;
+	}
+
+	public void setIdxEncryptionKey(String idxEncryptionKey) {
+		this.idxEncryptionKey = idxEncryptionKey;
 	}
 }

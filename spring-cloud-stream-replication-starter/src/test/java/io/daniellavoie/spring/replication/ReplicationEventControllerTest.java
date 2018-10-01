@@ -29,13 +29,13 @@ public class ReplicationEventControllerTest {
 
 	@Test
 	public void assertMessageCanBeRecovered() {
-		IntStream.range(1, 101).mapToObj(index -> new TestMessage(index, "Message " + index))
+		IntStream.range(1, 101).mapToObj(index -> new TestMessage(index, "Message " + index, "idx-key"))
 				.forEach(testMessageReplicationService::save);
 		
-		IntStream.range(1, 101).mapToObj(index -> new TestMessage(index, "Message " + index))
+		IntStream.range(1, 101).mapToObj(index -> new TestMessage(index, "Message " + index, "idx-key"))
 		.forEach(testMessageReplicationService::save);
 
-		testMessageReplicationService.delete(1);
+		testMessageReplicationService.delete(1, "idx-key");
 
 		restTemplate.exchange("/replication-event?source={source}&since={since}", HttpMethod.POST, null, Void.class,
 				"default", "2000-10-31T01:30:00.000-05:00").getBody();

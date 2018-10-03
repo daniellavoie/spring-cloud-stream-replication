@@ -16,7 +16,7 @@ public class ReplicationEvent {
 		UPDATE, DELETE
 	}
 
-	private long idReplicationEvent;
+	private long replicationEventId;
 	private LocalDateTime timestamp;
 	private String objectClass;
 	private EventType eventType;
@@ -27,9 +27,9 @@ public class ReplicationEvent {
 
 	}
 
-	public ReplicationEvent(long idReplicationEvent, LocalDateTime timestamp, String objectClass, EventType eventType, String source,
+	public ReplicationEvent(long replicationEventId, LocalDateTime timestamp, String objectClass, EventType eventType, String source,
 			String payload) {
-		setIdReplicationEvent(idReplicationEvent);
+		setReplicationEventId(replicationEventId);
 		setTimestamp(timestamp);
 		setObjectClass(objectClass);
 		setEventType(eventType);
@@ -39,12 +39,12 @@ public class ReplicationEvent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long getIdReplicationEvent() {
-		return idReplicationEvent;
+	public long getReplicationEventId() {
+		return replicationEventId;
 	}
 
-	public void setIdReplicationEvent(long idReplicationEvent) {
-		this.idReplicationEvent = idReplicationEvent;
+	public void setReplicationEventId(long replicationEventId) {
+		this.replicationEventId = replicationEventId;
 	}
 
 	public LocalDateTime getTimestamp() {

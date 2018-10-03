@@ -55,6 +55,8 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 	@Override
 	@StreamListener(ReplicationSink.INPUT)
 	public void processEvent(ReplicationEvent replicationEvent) {
+		LOGGER.trace("Received a replication event.");
+		
 		replicationEvent = replicationEventRepository.save(replicationEvent);
 
 		ReplicationService<?> replicationService = replicationServices.get(replicationEvent.getObjectClass());
@@ -66,6 +68,8 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 				} else {
 					replicationService.processDelete(replicationEvent.getPayload());
 				}
+			} else {
+				LOGGER.trace("Skipping replication event processing.");
 			}
 		} else {
 			LOGGER.warn("Could not find a replication service for class " + replicationEvent.getObjectClass() + ".");

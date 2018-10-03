@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import io.daniellavoie.spring.replication.AbstractReplicationService.ReplicationSource;
@@ -17,6 +18,7 @@ import io.daniellavoie.spring.replication.repository.ReplicationEventRepository;
 @EnableScheduling
 @AutoConfigurationPackage
 @EnableBinding({ ReplicationSink.class, ReplicationSource.class })
+@PropertySource("classpath:spring-cloud-stream.properties")
 public class ReplicationAutoConfiguration {
 
 	@Bean
@@ -29,5 +31,10 @@ public class ReplicationAutoConfiguration {
 			ReplicationEventRepository replicationEventRepository,
 			Optional<List<ReplicationService<?>>> replicationServices) {
 		return new ReplicationEventServiceImpl(replicationConfig, replicationEventRepository, replicationServices);
+	}
+
+	@Bean
+	public ReplicationEventController replicationEventController(ReplicationEventService replicationEventService) {
+		return new ReplicationEventController(replicationEventService);
 	}
 }

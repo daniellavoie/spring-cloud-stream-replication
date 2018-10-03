@@ -15,6 +15,12 @@ public class ReplicationConfig {
 
 	@Value("${replication.purge.days-to-keep:30}")
 	private int purgeDaysToKeep = 30;
+	
+	@Value("${replication.health-check.enabled:true}")
+	private boolean healthCheckEnabled = true;
+	
+	@Value("${replication.health-check.rate-millis:60000}")
+	private int healthCheckRateMillis = 60 * 1000;
 
 	private String source = "default";
 
@@ -52,6 +58,22 @@ public class ReplicationConfig {
 
 	public void setPurgeDaysToKeep(int purgeDaysToKeep) {
 		this.purgeDaysToKeep = purgeDaysToKeep;
+	}
+
+	public boolean isHealthCheckEnabled() {
+		return healthCheckEnabled;
+	}
+
+	public void setHealthCheckEnabled(boolean healthCheckEnabled) {
+		this.healthCheckEnabled = healthCheckEnabled;
+	}
+
+	public int getHealthCheckRateMillis() {
+		return healthCheckRateMillis;
+	}
+
+	public void setHealthCheckRateMillis(int healthCheckRateMillis) {
+		this.healthCheckRateMillis = healthCheckRateMillis;
 	}
 
 	public String getSource() {

@@ -14,7 +14,8 @@ caches:
 - path: maven-cache
 
 outputs:
-- name: build-output
+- name: parent-build-output
+- name: starter-build-output
 
 run:
   path: src/ci/tasks/build/build.sh

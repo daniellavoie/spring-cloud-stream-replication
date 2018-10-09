@@ -72,7 +72,7 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 				LOGGER.trace("Skipping replication event processing.");
 			}
 		} else {
-			LOGGER.warn("Could not find a replication service for class " + replicationEvent.getObjectClass() + ".");
+			LOGGER.trace("Could not find a replication service for class " + replicationEvent.getObjectClass() + " Ignoring notification.");
 		}
 	}
 

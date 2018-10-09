@@ -22,7 +22,7 @@ public class ReplicationConfig {
 	@Value("${replication.health-check.rate-millis:60000}")
 	private int healthCheckRateMillis = 60 * 1000;
 
-	private String source = "default";
+	private String source = "default-site";
 
 	public ReplicationConfig() {
 

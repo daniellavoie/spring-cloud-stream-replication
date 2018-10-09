@@ -1,0 +1,14 @@
+
+version : '2'
+
+services:
+  db:
+    image: rabbitmq:3.7.8-management
+    container_name: scs-replication-rabbitmq
+    ports:
+      - 5671:5671
+      - 5672:5672
+      - 15672:15672
+      - 25672:25672
+    networks:
+      - default

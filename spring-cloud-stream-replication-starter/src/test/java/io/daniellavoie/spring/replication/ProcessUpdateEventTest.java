@@ -72,7 +72,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 
 		replicationEventService.processEvent(replicationEvent);
 
-		Mockito.verify(replicationEventRepository).save(Mockito.any());
+		Mockito.verify(replicationEventRepository, Mockito.never()).save(Mockito.any());
 		Mockito.verify(testMessageRepository, Mockito.never()).save(Mockito.any());
 	}
 
@@ -113,8 +113,8 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 	public void testWithoutConfiguredReplicationService() throws JsonProcessingException {
 		setup();
 
-		ReplicationEventService replicationEventService = new ReplicationEventServiceImpl(new ReplicationConfig(), replicationEventRepository,
-				Optional.empty());
+		ReplicationEventService replicationEventService = new ReplicationEventServiceImpl(new ReplicationConfig(),
+				replicationEventRepository, Optional.empty());
 
 		ReplicationEvent replicationEvent = new ReplicationEvent(1, LocalDateTime.now(), TestMessage.class.getName(),
 				EventType.UPDATE, "default",
@@ -122,7 +122,7 @@ public class ProcessUpdateEventTest extends ReplicationServiceTest {
 
 		replicationEventService.processEvent(replicationEvent);
 
-		Mockito.verify(replicationEventRepository).save(Mockito.any());
+		Mockito.verify(replicationEventRepository, Mockito.never()).save(Mockito.any());
 		Mockito.verify(testMessageRepository, Mockito.never()).save(Mockito.any());
 	}
 }

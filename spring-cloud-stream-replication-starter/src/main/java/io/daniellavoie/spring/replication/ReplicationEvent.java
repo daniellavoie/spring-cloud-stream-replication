@@ -27,8 +27,8 @@ public class ReplicationEvent {
 
 	}
 
-	public ReplicationEvent(long replicationEventId, LocalDateTime timestamp, String objectClass, EventType eventType, String source,
-			String payload) {
+	public ReplicationEvent(long replicationEventId, LocalDateTime timestamp, String objectClass, EventType eventType,
+			String source, String payload) {
 		setReplicationEventId(replicationEventId);
 		setTimestamp(timestamp);
 		setObjectClass(objectClass);
@@ -87,5 +87,12 @@ public class ReplicationEvent {
 
 	public void setPayload(String payload) {
 		this.payload = payload;
+	}
+
+	@Override
+	public String toString() {
+		return "ReplicationEvent [replicationEventId=" + replicationEventId + ", timestamp=" + timestamp
+				+ ", objectClass=" + objectClass + ", eventType=" + eventType + ", source=" + source + ", payload="
+				+ payload + "]";
 	}
 }

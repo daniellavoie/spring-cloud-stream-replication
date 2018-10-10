@@ -56,13 +56,17 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 	@StreamListener(ReplicationSink.INPUT)
 	public void processEvent(ReplicationEvent replicationEvent) {
 		LOGGER.trace("Received a replication event.");
-		
-		replicationEvent = replicationEventRepository.save(replicationEvent);
 
 		ReplicationService<?> replicationService = replicationServices.get(replicationEvent.getObjectClass());
 
 		if (replicationService != null) {
+			replicationEvent = replicationEventRepository.save(replicationEvent);
+
 			if (!replicationService.skipEventProcessing()) {
+				if (LOGGER.isTraceEnabled()) {
+					LOGGER.trace("Processing " + replicationEvent + ".");
+				}
+
 				if (EventType.UPDATE.equals(replicationEvent.getEventType())) {
 					replicationService.convertAndProcessUpdateEvent(replicationEvent);
 				} else {
@@ -72,7 +76,8 @@ public class ReplicationEventServiceImpl implements ReplicationEventService {
 				LOGGER.trace("Skipping replication event processing.");
 			}
 		} else {
-			LOGGER.trace("Could not find a replication service for class " + replicationEvent.getObjectClass() + " Ignoring notification.");
+			LOGGER.trace("Could not find a replication service for class " + replicationEvent.getObjectClass()
+					+ " Ignoring notification.");
 		}
 	}
 

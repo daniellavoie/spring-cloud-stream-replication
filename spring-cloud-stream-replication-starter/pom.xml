@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>io.daniellavoie.spring.replication</groupId>
 		<artifactId>spring-cloud-stream-replication-parent</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.1.0</version>
 	</parent>
 	<artifactId>spring-cloud-stream-replication-starter</artifactId>
 	<name>Spring Cloud Stream Replication Starter</name>

@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   io.daniellavoie.spring.replication.ReplicationAutoConfiguration,\
-  io.daniellavoie.spring.replication.ReplicationHealthCheckAutoConfiguration
+  io.daniellavoie.spring.replication.ReplicationHealthCheckAutoConfiguration,\
+  io.daniellavoie.spring.replication.PurgeReplicationEventsConfig

@@ -11,7 +11,7 @@
 	<groupId>io.daniellavoie.spring.replication</groupId>
 	<artifactId>spring-cloud-stream-replication-parent</artifactId>
 	
-	<version>0.2.1</version>
+	<version>0.2.2</version>
 	<name>Spring Replication Parent</name>
 	
 	<packaging>pom</packaging>

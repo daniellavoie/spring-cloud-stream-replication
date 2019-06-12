@@ -1,4 +1,4 @@
-package io.daniellavoie.spring.replication;
+package io.daniellavoie.springreplication;
 
 import java.util.stream.IntStream;
 
@@ -12,8 +12,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import io.daniellavoie.spring.replication.service.TestMessage;
-import io.daniellavoie.spring.replication.service.TestMessageReplicationService;
+import io.daniellavoie.spring.replication.ReplicationEventService;
+import io.daniellavoie.springreplication.service.TestMessage;
+import io.daniellavoie.springreplication.service.TestMessageReplicationService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)

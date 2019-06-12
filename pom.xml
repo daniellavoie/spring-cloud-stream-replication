@@ -5,19 +5,19 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.1.RELEASE</version>
+		<version>2.1.0.RELEASE</version>
 	</parent>
 	
 	<groupId>io.daniellavoie.spring.replication</groupId>
 	<artifactId>spring-cloud-stream-replication-parent</artifactId>
 	
-	<version>0.2.3</version>
+	<version>2.1.0</version>
 	<name>Spring Replication Parent</name>
 	
 	<packaging>pom</packaging>
 	
 	<properties>
-		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 	</properties>
 	
 	<modules>

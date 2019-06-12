@@ -1,4 +1,4 @@
-package io.daniellavoie.spring.replication;
+package io.daniellavoie.springreplication;
 
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import io.daniellavoie.spring.replication.ReplicationEvent;
+import io.daniellavoie.spring.replication.ReplicationEventService;
 import io.daniellavoie.spring.replication.ReplicationEvent.EventType;
 import io.daniellavoie.spring.replication.repository.ReplicationEventRepository;
 

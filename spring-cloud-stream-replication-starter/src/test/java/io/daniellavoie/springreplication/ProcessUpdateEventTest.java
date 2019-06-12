@@ -1,4 +1,4 @@
-package io.daniellavoie.spring.replication;
+package io.daniellavoie.springreplication;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -11,12 +11,16 @@ import org.mockito.Mockito;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.daniellavoie.spring.replication.ReplicationConfig;
+import io.daniellavoie.spring.replication.ReplicationEvent;
+import io.daniellavoie.spring.replication.ReplicationEventService;
+import io.daniellavoie.spring.replication.ReplicationEventServiceImpl;
 import io.daniellavoie.spring.replication.ReplicationEvent.EventType;
 import io.daniellavoie.spring.replication.exception.ReplicationUnmarshallingException;
 import io.daniellavoie.spring.replication.repository.ReplicationEventRepository;
-import io.daniellavoie.spring.replication.service.TestMessage;
-import io.daniellavoie.spring.replication.service.TestMessageReplicationService;
-import io.daniellavoie.spring.replication.service.TestMessageRepository;
+import io.daniellavoie.springreplication.service.TestMessage;
+import io.daniellavoie.springreplication.service.TestMessageReplicationService;
+import io.daniellavoie.springreplication.service.TestMessageRepository;
 
 public class ProcessUpdateEventTest extends ReplicationServiceTest {
 	private TestMessage testMessage = new TestMessage(1, "This is a test.");

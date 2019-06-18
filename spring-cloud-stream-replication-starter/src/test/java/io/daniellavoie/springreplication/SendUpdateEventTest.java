@@ -1,4 +1,4 @@
-package io.daniellavoie.spring.replication;
+package io.daniellavoie.springreplication;
 
 import java.util.Optional;
 
@@ -11,9 +11,11 @@ import org.springframework.messaging.MessageChannel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.daniellavoie.spring.replication.ReplicationConfig;
+import io.daniellavoie.spring.replication.ReplicationEvent;
 import io.daniellavoie.spring.replication.ReplicationEvent.EventType;
 import io.daniellavoie.spring.replication.exception.ReplicationMarshallingException;
-import io.daniellavoie.spring.replication.service.TestMessage;
+import io.daniellavoie.springreplication.service.TestMessage;
 
 public class SendUpdateEventTest extends ReplicationServiceTest {
 	private TestMessage testMessage = new TestMessage(1, "This is a test.");

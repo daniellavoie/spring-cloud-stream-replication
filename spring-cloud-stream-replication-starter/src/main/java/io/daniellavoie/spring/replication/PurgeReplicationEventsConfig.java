@@ -3,21 +3,19 @@ package io.daniellavoie.spring.replication;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.concurrent.Executor;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.TriggerContext;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
-@Configuration
 public class PurgeReplicationEventsConfig implements SchedulingConfigurer {
 	private ReplicationConfig replicationConfig;
 	private ReplicationEventService replicationEventService;
-	private Executor taskExecutor;
+	private TaskScheduler taskExecutor;
 
 	public PurgeReplicationEventsConfig(ReplicationConfig replicationConfig,
-			ReplicationEventService replicationEventService, Executor taskExecutor) {
+			ReplicationEventService replicationEventService, TaskScheduler taskExecutor) {
 		this.replicationConfig = replicationConfig;
 		this.replicationEventService = replicationEventService;
 		this.taskExecutor = taskExecutor;

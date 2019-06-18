@@ -8,8 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import io.daniellavoie.spring.replication.ReplicationEventService;
+import io.daniellavoie.spring.replicationsample.Customer;
+import io.daniellavoie.spring.replicationsample.CustomerService;
+import io.daniellavoie.spring.replicationsample.ReplicationSampleApplication;
 
-@SpringBootTest(properties = "replication.enabled=false")
+@SpringBootTest(classes = ReplicationSampleApplication.class, properties = "replication.enabled=false")
 @RunWith(SpringRunner.class)
 public class CustomerServiceImplTest {
 	@Autowired

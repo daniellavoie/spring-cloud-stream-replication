@@ -1,4 +1,4 @@
-package io.daniellavoie.spring.replication.service;
+package io.daniellavoie.springreplication.service;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
